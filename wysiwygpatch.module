@@ -3,8 +3,14 @@
 * Implements hook_wysiwyg_editor_settings_alter().
 */
 function wysiwygpatch_wysiwyg_editor_settings_alter(&$settings, $context) {
-if ($context['profile']->editor == 'ckeditor') {
-    $settings['allowedContent'] = TRUE;
-    $settings['contentsCss'] = '/' . drupal_get_path('module', 'wysiwygpatch') . '/wysiwyg.css';
-  }
+    if ($context['profile']->editor == 'ckeditor') {
+        $settings['allowedContent'] = TRUE;
+        $settings['contentsCss'] = '/' . drupal_get_path('module', 'wysiwygpatch') . '/wysiwyg.css';
+      }
+  /*
+   * Here we set the default editor view size. possible we can create one pr.content type if needed.
+   */
+  if ($context['profile']->editor == 'ckeditor') {
+    $settings['height'] = 500;
+   }
 }
